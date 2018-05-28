@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>评论</title>
+  <style>
+    .commentForm {
+      display: block;
+      width: 600px;
+      margin: 50px auto 0;
+    }
+    .content-wrapper {
+      display: block;
+      margin: 8px 0;      
+    }
+    .title {
+      display: inline-block;
+      width: 100px;
+      height: 24px;
+      line-height: 24px;
+      text-align: center;
+      vertical-align: top;
+    }
+    .submitBtn {
+      display: inline-block;
+      width: 100px;
+      height: 20px;
+      float: right;
+    }
+  </style>
+</head>
+<body>
+  <table id="comment" width="600" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolorlight="#666666" bordercolordark="#ffffff">
+    <tr>
+      <th width="18%" height="27" align="center" bgcolor="#E5BB93">评论人</th>
+      <th width="82%" align="center" bgcolor="#E5BB93">评论内容</th>
+    </tr>
+  </table>
+  <form name="commentForm" action="" method="post" class="commentForm">
+    <div class="content-wrapper">
+      <span class="title">评论人:</span><input name="person" type="text" id="person" size="66">
+    </div>
+    <div class="content-wrapper">
+      <span class="title">评论内容:</span><textarea name="content" cols="68" rows="6" id="content"></textarea>
+    </div>
+    <input type="button" name="submitBtn" class="submitBtn" value="发表" onclick="addComment()">
+  </form>
+  <script>
+    function addComment () {
+      var person = document.createTextNode(commentForm.person.value); // 创建代表评论人的TextNode节点
+      var content = document.createTextNode(commentForm.content.value); // 创建代表评论内容的TextNode节点
+      // 创建td类型的Element节点
+      var td_person = document.createElement("td");
+      var td_content = document.createElement("td");
+      var tr = document.createElement("tr");  // 创建tr类型的Element节点
+      var tbody = document.createElement("tbody");  // 创建一个tbody类型的Element节点
+      // 将TextNode节点加入到td类型的节点中
+      td_person.appendChild(person);  // 添加评论人
+      td_content.appendChild(content);  //添加评论内容
+      // 将td类型的节点添加到tr节点中
+      tr.appendChild(td_person);
+      tr.appendChild(td_content);
+      tbody.appendChild(tr);  // 将tr节点加入tbody中
+      var tComment = document.getElementById("comment");  // 获取table对象
+      tComment.appendChild(tbody);  // 将节点tbody加入节点尾部
+
+      // 清空评论人与文本框
+      commentForm.person.value="";
+      commentForm.content.value="";
+    }
+  </script>
+</body>
+</html>

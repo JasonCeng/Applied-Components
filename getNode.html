@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>一个简单的文档</title>
+  </head>
+  <body onload="show()">
+    welcome<br>
+    <a href="http://www.jasonceng.cn">www.jasonceng.cn</a>
+    <script language="javascript">  //获取该文档中的全部标记及标记总数
+        var elementList = ""; // 全局变量，保存Element标记名，使用完毕要清空
+        function getElement (node) {  //参数node是一个Node对象
+          var total = 0;
+          if (node.nodeType == 1) { // 坚持node是否为Element对象
+            total++;                //如果是，计数器+1
+            elementList = elementList + node.nodeName + "、";  //保存标记名
+          }
+          var childrens = node.ChildNodes;
+          for (var m = node.firstChild; m != null; m = m.nextSibling) {
+            total += getElement(m);  //对每个子节点进行递归操作
+          }
+          return total;
+        }
+        function show () {
+          var number = getElement(document);  // 获取标记总数
+          elementList = elementList.substring(0, elementList.length - 1);   //取出字符串最后一个顿号
+          alert("该文档中包含：" + elementList + "等" + number + "个标签！");
+          elementList = ""; //清空全局变量
+        }
+    </script>
+  </body>
+</html>
