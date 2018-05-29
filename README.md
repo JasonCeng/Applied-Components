@@ -10,3 +10,6 @@ js获取文档中的所有标签。
 # comment.html
 原生js插入节点
 实例：添加评论。
+
+# checkDate.js
+三种检查日期格式的方法。
