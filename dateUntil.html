@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>日期倒计时</title>
+</head>
+
+<body>
+    <input type="text" value="" id="dateInput">
+    <input type="button" onclick="go()" value="开始">
+    <div id="timer"></div>
+    <script>
+        // 倒计时
+        var _ordertimer = null;
+        var data = new Date(); //获取系统当前时间
+        // document.getElementById("dateInput").value = data.getFullYear() + '-' + data.getMonth() + '-' +data.getDate() + ' ' + data.getHours() + ':' + data.getMinutes() + ':' + data.getSeconds();  // 获取当前时间
+        function leftTime(endDate) {
+            var leftTime = (new Date(endDate)) - new Date(); // 计算剩余的毫秒数
+            var days = parseInt(leftTime / 1000 / 60 / 60 / 24, 10); // 计算剩余的天数
+            var hours = parseInt(leftTime / 1000 / 60 / 60 % 24, 10); // 计算剩余的小时数
+            var minutes = parseInt(leftTime / 1000 / 60 % 60, 10); // 计算剩余的分钟数
+            var seconds = parseInt(leftTime / 1000 % 60, 10); // 计算剩余的秒数
+            days = checkTime(days);
+            hours = checkTime(hours);
+            minutes = checkTime(minutes);
+            seconds = checkTime(seconds);
+            if (days >= 0 || hours >= 0 || minutes >= 0 || seconds >= 0) {
+                document.getElementById("timer").innerHTML = days + "天" + hours + "时" + minutes + "分" + seconds + "秒";
+            }
+            if (days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0) {
+                window.clearInterval(_ordertimer);
+                _ordertimer = null;
+            }
+        }
+
+        function checkTime(i) { // 将0~9的数字加上前导0，例如：1变为01
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+
+        function go() {
+            var nowTime = new Date();
+            var dateInput = new Date(document.getElementById("dateInput").value);
+            if (nowTime > dateInput) {
+                return; // 设置的时间小于现在时间，退出
+            }
+            _ordertimer = setInterval(function() {
+                leftTime(dateInput);
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
