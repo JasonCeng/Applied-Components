@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="content">
+      1
+    </div>
+    <a href="javascript:void(0);" class="start">开始</a>
+    <a href="javascript:void(0);" class="close">关闭</a>
+  </div>
+  <script src="assets/js/app.js"></script>
+  <script>
+    (function () {
+      new foo({
+        data() {
+          return {
+            count: 1,
+            time: {}
+          }
+        },
+        dom: {
+          content: document.querySelector('.content'),
+          btn: document.querySelector('a.close'),
+          start: document.querySelector('a.start')
+        },
+        eventInit() {
+          let _this = this
+          _this.dom.btn.onclick = function () {
+            _this.clearTime()
+          }
+          _this.dom.start.onclick = function () {
+            _this.startTime()
+          }
+        },
+        methods() {
+          let _this = this
+          return {
+            render() {
+              _this.dom.content.innerHTML = _this.count
+            },
+            timer() {
+              _this.count++
+              _this.render()
+            },
+            startTime() {
+              _this.time = setInterval(function () {
+                _this.timer()
+              }, 1000)
+            },
+            clearTime() {
+              clearInterval(_this.time)
+            }
+          }
+        },
+        ready() {
+          let _this = this
+          _this.render()
+          _this.startTime()
+        }
+      })
+    })()
+  </script>
+</body>
+
+</html>

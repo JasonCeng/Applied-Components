@@ -1,0 +1,55 @@
+const foo = function (option) {
+    console.log(option)
+    var model = function () {
+        return {
+            data: {
+                count: 1,
+                name: 'apiao'
+            },
+            time: {}
+        }
+    }()
+    var dom = {
+        content: document.querySelector('.content'),
+        btn: document.querySelector('.close')
+    }
+    var eventInit = function () {
+        dom.btn.onclick = function () {
+            methods.clearTime()
+        }
+    }()
+    var methods = function () {
+        return {
+            render() {
+                dom.content.innerHTML = model.data.count
+            },
+            timer() {
+                model.data.count++
+                this.render()
+            },
+            startTime() {
+                let _this = this
+                model.time = setInterval(function () {
+                    _this.timer()
+                }, 1000)
+            },
+            clearTime() {
+                clearInterval(model.time)
+            }
+        }
+    }()
+    var init = function () {
+        methods.startTime()
+    }()
+    var config = function () {
+        return {
+            setName: function (newVal) {
+                model.data.name = newVal
+            },
+            getName: function () {
+                console.log(model.data.name)
+            }
+        }
+    }
+    return config()
+}

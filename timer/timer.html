@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            1
+        </div>
+        <a href="javascript:void(0);" class="close">关闭</a>
+    </div>
+    <script>
+     (function(){
+        const foo = function(){
+            var model = function () {
+                return {
+                    data: {
+                        count: 1,
+                        name: 'apiao'
+                    },
+                    time: {}
+                }
+            }()
+            var dom = {
+                content: document.querySelector('.content'),
+                btn: document.querySelector('.close')
+            }
+            var eventInit = function () {
+                dom.btn.onclick = function(){
+                    methods.clearTime()
+                }
+            }()
+            var methods = function () {
+                return {
+                    render () {
+                        dom.content.innerHTML = model.data.count
+                    },
+                    timer () {
+                        model.data.count ++
+                        this.render()
+                    },
+                    startTime () {
+                        let _this = this
+                        model.time = setInterval(function(){
+                            _this.timer()
+                        }, 1000)
+                    },
+                    clearTime () {
+                        clearInterval(model.time)
+                    }
+                }
+            }()
+            var init = function () {
+                methods.startTime()
+            }()
+            var config = function () {
+                return {
+                    setName: function (newVal) {
+                        model.data.name = newVal
+                    },
+                    getName: function () {
+                        console.log(model.data.name)
+                    }
+                }
+            }
+            return config()
+        }()
+       foo.getName()
+       foo.setName('jason')
+       foo.getName()
+     })()
+    </script>
+</body>
+</html>
