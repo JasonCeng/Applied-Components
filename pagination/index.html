@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>换页</title>
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+  <!-- 容器开始 -->
+  <div class="container">
+    <!-- 头部开始 -->
+    <div class="header">
+      <p class="title">最新资产</p>
+      <a href="javascript:void(0);" class="more">MORE+</a>
+    </div>
+    <!-- 头部结束 -->
+    <!-- 内容开始 -->
+    <div class="content">
+      <ul class="items-group" id="content-items-group">
+        
+      </ul>
+    </div>
+    <!-- 内容结束 -->
+    <!-- 分页器开始 -->
+    <nav class="paginate">
+      <ul class="paginations-group" id="paginations-group">
+        
+      </ul>
+    </nav>
+    <!-- 分页器结束 -->
+  </div> 
+  <!-- 容器结束 -->
+  <!-- jQuery.js -->
+  <script src="assets/js/jquery-3.3.1.js"></script>
+  <!-- artTemplate.js -->
+  <script src="assets/js/template-web.js"></script>
+  <!-- 内容渲染模板开始 -->
+  <script id="content-item-template" type="text/html">
+    {{each data item key}}
+    <li class="item">
+        <div class="left-box">
+            <span class="name atom">客户名称：{{item.name}}</span>
+            <span class="money atom text-right font-big">{{item.money}}</span>
+            <span class="type atom">业务种类：{{item.type}}</span>
+            <span class="date atom text-right">提款时间：{{item.date}}</span>
+        </div>
+        <a href="{{item.href}}" class="right-box detail">&gt;&nbsp;&nbsp;&nbsp;</a>
+    </li>
+    {{/each}}
+  </script>
+  <!-- 内容渲染模板结束 -->
+  <!-- 分页器渲染模板开始 -->
+  <script id="pagination-template" type="text/html">
+    {{if page > 1}}
+    <li class="paginations-item">
+      <a href="javascript:void(0);" class="pageBtn prev" aria-label="Previous">&laquo;</a>
+    </li>    
+    {{else}}
+    <li class="paginations-item disable">
+        <a href="javascript:void(0);" class="pageBtn prev" aria-label="Previous">&laquo;</a>
+    </li>
+    {{/if}}
+    {{each arr}}
+    {{if page == ($index + 1)}}
+    <li class="paginations-item active">
+      <a href="javascript:void(0);" class="pageBtn pageNum">{{$index + 1}}</a>
+    </li>
+    {{else}}
+    <li class="paginations-item">
+      <a href="javascript:void(0);" class="pageBtn pageNum" data-page="{{$index + 1}}">{{$index + 1}}</a>
+    </li>
+    {{/if}}
+    {{/each}}
+    {{if page < totalPage}}
+    <li class="paginations-item">
+      <a href="javascript:void(0);" class="pageBtn next" aria-labe="Next">&raquo;</a>
+    </li>    
+    {{else}}
+    <li class="paginations-item disable">
+        <a href="javascript:void(0);" class="pageBtn next" aria-labe="Next">&raquo;</a>
+    </li>
+    {{/if}}
+  </script>
+  <!-- 分页器渲染模板结束 -->
+  <!-- app.js -->
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
