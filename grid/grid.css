@@ -1,0 +1,60 @@
+.container{
+    width:1280px;
+}
+
+.container .general{
+    line-height: 75px;
+    height:75px;
+    margin:15px;
+    border:1px solid grey;
+    display:inline-block;
+    text-align: center;
+}
+
+.container .col-1{
+    width:69.6px;
+}
+
+.container .col-2{
+    width:176.2px;
+}
+
+.container .col-3{
+    width:282.8px;
+}
+
+.container .col-4{
+    width:389.4px;
+}
+
+.container .col-5{
+    width:496px;
+}
+
+.container .col-6{
+    width:602.6px;
+}
+
+.container .col-7{
+    width:709.2px;
+}
+
+.container .col-8{
+    width:815.8px;
+}
+
+.container .col-9{
+    width:922.4px;
+}
+
+.container .col-10{
+    width:1029px;
+}
+
+.container .col-11{
+    width:1135.6px;
+}
+
+.container .col-12{
+    width:1242.2px;
+}
